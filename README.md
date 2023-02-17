@@ -1,5 +1,5 @@
-<h2 style="text-align: center;">🦀 rs-enums 🏷️</h2>
-<p style="text-align: center;">rust-like enums for TypeScript</p>
+<h2 align="center">🦀 rs-enums 🏷️</h2>
+<p align="center">rust-like enums for TypeScript</p></p>
 
 ## ➕ Installation
 
