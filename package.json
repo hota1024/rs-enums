@@ -1,13 +1,12 @@
 {
-  "name": "__ctp__name_param",
+  "name": "rs-enums",
   "version": "0.0.0",
   "license": "MIT",
-  "description": "enum for TypeScript",
+  "description": "rust-like enums for TypeScript",
   "repository": {
     "type": "git",
-    "url": "hota1024/std-enum"
+    "url": "hota1024/rs-enum"
   },
-  "type": "module",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
