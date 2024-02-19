@@ -6,6 +6,9 @@ type ResultVariants<T, E> = {
   Err: E
 }
 
+export type OkValueType<T> = T extends Result<infer R, unknown> ? R : never
+export type ErrValueType<T> = T extends Result<unknown, infer R> ? R : never
+
 export class Result<
   T,
   E,
@@ -17,6 +20,12 @@ export class Result<
 
   static Err<T, E>(err: E): Result<T, E> {
     return new Result<T, E>('Err', err)
+  }
+
+  static fromJSON<T = unknown, E = unknown>(json: string): Result<T, E> {
+    const parsed = JSON.parse(json)
+
+    return new Result(parsed.variant, parsed.value)
   }
 
   clone(): Result<T, E, K> {

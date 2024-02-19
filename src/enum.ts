@@ -73,6 +73,18 @@ export class Enum<
   takeVariantValue(): NV {
     return this.#value
   }
+
+  /**
+   * serialize enum instance to JSON.
+   *
+   * @returns The JSON string.
+   */
+  toJSON(): string {
+    return JSON.stringify({
+      variant: this.getVariant(),
+      value: this.takeVariantValue(),
+    })
+  }
 }
 
 export type EnumNarrowSelector<V> = unknown | keyof V

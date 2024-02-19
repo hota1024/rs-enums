@@ -1,5 +1,5 @@
 import { None, Some } from '@/std/Opt'
-import { Err, Ok, Result } from '@/std/Result'
+import { Err, ErrValueType, Ok, OkValueType, Result } from '@/std/Result'
 
 describe('Result test', () => {
   test('Result.Ok', () => {
@@ -182,5 +182,19 @@ describe('Result test', () => {
 
     const x2 = Err<number, string>('error')
     expect(x2.isErr()).toBe(true)
+  })
+
+  test('Serialize/Deserialize', () => {
+    const ok = Ok({ name: 'hoge', age: 20 })
+    const okJson = ok.toJSON()
+    const okParsed = Result.fromJSON<OkValueType<typeof ok>>(okJson)
+    expect(ok.unwrap()).toMatchObject(okParsed.unwrap())
+
+    const err = Err({ kind: 'unauthorized' })
+    const errJson = err.toJSON()
+    const errParsed = Result.fromJSON<unknown, ErrValueType<typeof err>>(
+      errJson
+    )
+    expect(err.err().unwrap()).toMatchObject(errParsed.err().unwrap())
   })
 })
